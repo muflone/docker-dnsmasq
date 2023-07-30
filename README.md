@@ -14,3 +14,11 @@ System Requirements
 -------------------
 
 * Docker (tested using v.24.05)
+
+Installation
+------------
+
+Build the container image using:
+
+    docker build archlinux-base -t ilmuflone/dnsmasq:2.89-archlinux-base-20230730
+

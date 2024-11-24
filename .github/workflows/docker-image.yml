@@ -18,7 +18,7 @@ jobs:
     - name: Define variables
       run: |
         echo "PACKAGE_NAME=docker-dnsmasq" >> $GITHUB_ENV
-        echo "PACKAGE_VERSION=$(git describe --tags --abbrev=0 | sed 's/-/./g).$(git rev-list --count HEAD)" >> $GITHUB_ENV
+        echo "PACKAGE_VERSION=$(git describe --tags --abbrev=0 | sed 's/-/./g').$(git rev-list --count HEAD)" >> $GITHUB_ENV
     - name: Build the Docker image
       run: |
         docker build archlinux-base --tag ${{ vars.DOCKER_REGISTRY_REPOSITORY }}/${{ env.PACKAGE_NAME }}:${{ env.PACKAGE_VERSION }} --tag ${{ vars.DOCKER_REGISTRY_REPOSITORY }}/${{ env.PACKAGE_NAME }}:latest

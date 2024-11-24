@@ -14,7 +14,7 @@ jobs:
         echo "COMMIT_REVISION=$(git rev-list --count HEAD)" >> $GITHUB_ENV
         echo "PACKAGE_NAME=docker-dnsmasq" >> $GITHUB_ENV
         echo "PACKAGE_DATE=$(date +%Y%m%d.%H%M%S)" >> $GITHUB_ENV
-        echo "PACKAGE_VERSION=${PACKAGE_DATE}.${COMMIT_REVISION}" >> $GITHUB_ENV
+        echo "PACKAGE_VERSION=${{ env.PACKAGE_DATE }}.${{ env.COMMIT_REVISION }}" >> $GITHUB_ENV
     - name: Build the Docker image
       run: |
         docker build archlinux-base --tag ${{ vars.DOCKER_REGISTRY_REPOSITORY }}/${{ env.PACKAGE_NAME }}:${{ env.PACKAGE_VERSION }} --tag ${{ vars.DOCKER_REGISTRY_REPOSITORY }}/${{ env.PACKAGE_NAME }}:latest

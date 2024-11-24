@@ -1,0 +1,17 @@
+name: Build and publish image
+
+on:
+  [workflow_dispatch]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+    - name: Checkout
+      uses: actions/checkout@v4
+    - name: Build the Docker image
+      run: docker build archlinux-base --tag ${{ vars.DOCKER_REGISTRY_REPOSITORY }}/docker-dnsmasq:$(date +%s)
+    - name: Login to registry
+      run: docker login -u "${{ secrets.DOCKER_REGISTRY_USER }}" -p "${{ secrets.DOCKER_REGISTRY_PASSWORD }}" "${{ vars.DOCKER_REGISTRY_REPOSITORY }}"
+    - name: Push to registry
+      run: docker push ${{ vars.DOCKER_REGISTRY_REPOSITORY }}/docker-dnsmasq:$(date +%s)

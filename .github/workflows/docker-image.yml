@@ -9,9 +9,10 @@ jobs:
     steps:
     - name: Checkout
       uses: actions/checkout@v4
+    - run: echo "PACKAGE_NAME=docker-dnsmasq:$(date +%s)" >> $GITHUB_ENV
     - name: Build the Docker image
-      run: docker build archlinux-base --tag ${{ vars.DOCKER_REGISTRY_REPOSITORY }}/docker-dnsmasq:$(date +%s)
+      run: docker build archlinux-base --tag ${{ vars.DOCKER_REGISTRY_REPOSITORY }}/${{ env.PACKAGE_NAME }}
     - name: Login to registry
       run: docker login -u "${{ secrets.DOCKER_REGISTRY_USER }}" -p "${{ secrets.DOCKER_REGISTRY_PASSWORD }}" "${{ vars.DOCKER_REGISTRY_REPOSITORY }}"
     - name: Push to registry
-      run: docker push ${{ vars.DOCKER_REGISTRY_REPOSITORY }}/docker-dnsmasq:$(date +%s)
+      run: docker push ${{ vars.DOCKER_REGISTRY_REPOSITORY }}/${{ env.PACKAGE_NAME }}

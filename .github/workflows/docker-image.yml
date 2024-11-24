@@ -9,6 +9,8 @@ jobs:
     steps:
     - name: Checkout
       uses: actions/checkout@v4
+      with:
+        fetch-depth: 0
     - name: Define variables
       run: |
         echo "PACKAGE_NAME=docker-dnsmasq" >> $GITHUB_ENV

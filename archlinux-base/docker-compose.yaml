@@ -3,7 +3,7 @@ version: '3'
 services:
    dnsmasq:
      container_name: dnsmasq
-     image: ilmuflone/dnsmasq:2.89-archlinux-base-20230730
+     image: ilmuflone/dnsmasq:2.90-archlinux-base-20241125-1
      hostname: dnsmasq
      # Use network_mode: host to enable DHCP
      network_mode: host
